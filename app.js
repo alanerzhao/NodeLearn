@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//这里依赖的是本地的routes目录下的文件
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -18,6 +19,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'tpl');
+//更改引擎为juicer
 app.set('tpl', juicer);
 app.engine('tpl', juicerExpressAdapter);
 
@@ -29,6 +31,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//app.use(require('connect-livereload')())
 
 //如果访问/则调用routes下的index /users同理
 app.use('/', routes);
@@ -44,7 +48,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
+//测试环境
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -57,6 +61,7 @@ if (app.get('env') === 'development') {
   });
 }
 
+//生产环境
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
