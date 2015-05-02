@@ -12,7 +12,7 @@
     "express": "~4.12.2",
     "gulp": "^3.8.11",
     "gulp-express": "^0.3.5",
-    "gulp-nodemon": "^2.0.2",
+    "gulp-nodemon": "^2.0.3",
     "jade": "~1.9.2",
     "juicer-express-adapter": "^0.1.5",
     "morgan": "~1.5.1",

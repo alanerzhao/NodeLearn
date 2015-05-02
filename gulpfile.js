@@ -2,6 +2,7 @@ var gulp = require('gulp'),
         sass = require('gulp-sass'),
         autoprefixer = require('gulp-autoprefixer'),
         minifycss = require('gulp-minify-css'),
+        nodemon = require("gulp-nodemon"),
         rename = require('gulp-rename');
 
 gulp.task('express', function() {
@@ -42,6 +43,17 @@ gulp.task('watch', function() {
   gulp.watch('public/**/*.scss', ['styles']);
   //gulp.watch('views/**/*.tpl', notifyLiveReload);
   //gulp.watch('public/**/*.css', notifyLiveReload);
+    nodemon({
+        script: 'index.js',
+        ext: 'js html',
+        watch: [
+            'index.js',
+            'app.js',
+            'public/',
+            'routes/',
+            'views/'
+        ]
+    });
 });
 
 gulp.task('default', ['styles', 'express', 'watch'], function() {
