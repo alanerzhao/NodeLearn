@@ -1,0 +1,21 @@
+{
+  "name": "web",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "alanerzhao <alanerzhao@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/alanerzhao/NodeLearn",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
