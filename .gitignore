@@ -11,5 +11,9 @@
 build/
 *.log
 .sass-cache
-node_modules/*
+
+node_modules
 !node_modules/hfe
+
+coverage/*
+public
