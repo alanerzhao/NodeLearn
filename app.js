@@ -6,17 +6,20 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var routers = require('./routes');
 
 //这里依赖的是本地的routes目录下的文件
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var form = require('./routes/form');
+//var routes = require('./routes/index');
+//var users = require('./routes/users');
+//var form = require('./routes/form');
+//var ditui = require('./routes/ditui');
 
 var juicer = require("juicer");
 var juicerExpressAdapter = require('juicer-express-adapter');
 
 //实例化express
 var app = express();
+routers(app);
 //app.use(session({
   //genid: function(req) {
     //return genuuid() // use UUIDs for session IDs
@@ -41,6 +44,9 @@ app.use(cookieParser(key));
 app.use(session({
     secret:"baozi",
     name:"cc",
+    //cookie: {
+        //maxAge: 20 * 60 * 1000
+    //},
     secure:true
     //cookie: { maxAge: 60000 }
 }))
@@ -49,14 +55,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(require('connect-livereload')())
 
 //如果访问/则调用routes下的index /users同理
-app.use('/', routes);
-app.use('/users', users);
-app.use('/form', form);
+//app.use('/', routes);
+//app.use('/users', users);
+//app.use('/form', form);
 //TODO 这里我测试新建一个路由来交给users控制
-app.use('/lists', users);
+//app.use('/lists', users);
+//app.use('/ditui',ditui);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+    console.log("app404")
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -68,6 +76,7 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
+      console.log("app",err)
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
