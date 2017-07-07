@@ -1,4 +1,6 @@
 #####
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/alanerzhao/NodeLearn.svg)](https://greenkeeper.io/)
 nodejs 和 express 实践
 
 #### 目录
